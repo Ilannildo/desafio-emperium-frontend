@@ -6,8 +6,13 @@ import { Search } from "../../components/Search";
 import { PlanetContext } from "../../contexts/PlanetContext";
 
 export const Planets = () => {
-
-  const { planets, getPlanets, setDetailPlanet } = useContext(PlanetContext);
+  const {
+    planets,
+    getPlanets,
+    setDetailPlanet,
+    saveFavoritesPlanets,
+    favoritesPlanets,
+  } = useContext(PlanetContext);
   const [search, setSearch] = useState(null);
 
   useEffect(() => {
@@ -32,6 +37,9 @@ export const Planets = () => {
         <ListPlanet
           planet={search ? search : planets}
           setDetailPlanet={setDetailPlanet}
+          setFavoritesPlanets={saveFavoritesPlanets}
+          favoritesPlanets={favoritesPlanets}
+          enableFavButton={true}
         />
       ) : null}
     </>

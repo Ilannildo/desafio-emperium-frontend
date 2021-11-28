@@ -6,12 +6,16 @@ import { Search } from "../../components/Search";
 import { PeopleContext } from "../../contexts/PeopleContext";
 
 export const Home = () => {
-  const { peoples, getPeoples, setDetailPeople } = useContext(PeopleContext);
+  const { peoples, getPeoples, setDetailPeople, saveFavorites, favoritesPeople } =
+    useContext(PeopleContext);
   const [search, setSearch] = useState(null);
 
   useEffect(() => {
-    if (!peoples) getPeoples();
-  });
+    if (!peoples) {
+      getPeoples(); 
+    }
+    console.log('Personagens favoritos =>',favoritesPeople);
+  }, [peoples, getPeoples, favoritesPeople]);
 
   const searchPeople = (term) => {
     const result = peoples.filter((item) =>
@@ -24,13 +28,19 @@ export const Home = () => {
     <>
       <Navbar />
       <Title>
-        <header>Vamos conhecer mais sobre os personagens <br /> QUE A FORÇA ESTEJA COM VOCÊ</header>
+        <header>
+          Vamos conhecer mais sobre os personagens <br /> QUE A FORÇA ESTEJA COM
+          VOCÊ
+        </header>
       </Title>
       <Search label="nome" onSearch={searchPeople} />
       {peoples ? (
         <ListPeople
           peoples={search ? search : peoples}
           setDetailPeople={setDetailPeople}
+          setFavorites={saveFavorites}
+          favoritesPeople={favoritesPeople}
+          enableFavButton={true}
         />
       ) : null}
     </>

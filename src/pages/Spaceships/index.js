@@ -6,8 +6,13 @@ import { Search } from "../../components/Search";
 import { StarshipsContext } from "../../contexts/StarshipsContext";
 
 export const Starships = () => {
-
-  const { starships, getStarships, setDetailStarships } = useContext(StarshipsContext);
+  const {
+    starships,
+    getStarships,
+    setDetailStarships,
+    saveFavoritesStarships,
+    favoritesStarships,
+  } = useContext(StarshipsContext);
   const [search, setSearch] = useState(null);
 
   useEffect(() => {
@@ -32,6 +37,9 @@ export const Starships = () => {
         <ListStarships
           starships={search ? search : starships}
           setDetailStarships={setDetailStarships}
+          saveFavoritesStarships={saveFavoritesStarships}
+          favoritesStarships={favoritesStarships}
+          enableFavButton={true}
         />
       ) : null}
     </>

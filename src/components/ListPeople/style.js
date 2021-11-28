@@ -13,6 +13,19 @@ export const Container = styled.div`
   overflow: hidden;
   padding: 30px;
 `;
+export const ContentRight = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  /* margin: 0 auto; */
+  min-height: 12hv;
+  width: 100%;
+  max-width: 300px;
+  min-height: 70%;
+  position: relative;
+  flex-direction: column;
+  /* background-color: #000; */
+`;
 
 export const Itens = styled.ul`
   list-style: none;
@@ -43,6 +56,16 @@ export const Title = styled.h1`
 `;
 
 export const ButtonDetail = styled.button`
+  font-size: 12px;
+  color: #005076;
+  line-height: 5px;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+`;
+
+export const ButtonFav = styled.button`
   font-size: 12px;
   color: #005076;
   line-height: 5px;

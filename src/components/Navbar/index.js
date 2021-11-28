@@ -23,11 +23,11 @@ export const Navbar = () => {
               <p>Naves espaciais</p>
             </NavLink>
           </Item>
-          {/* <Item>
-            <NavLink to="/favoritos">
+          <Item>
+            <NavLink to="/favorites">
               <p>Favoritos</p>
             </NavLink>
-          </Item> */}
+          </Item>
         </List>
       </nav>
     </Container>

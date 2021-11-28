@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import api from "../services/api";
 
 export const PeopleContext = createContext({});
@@ -6,6 +6,16 @@ export const PeopleContext = createContext({});
 export const PeopleContextProvider = ({ children }) => {
   const [peoples, setPeoples] = useState(null);
   const [detailPeople, setDetailPeople] = useState(null);
+  const [favoritesPeople, setFavorites] = useState([]);
+
+  useEffect(() => {
+    if (favoritesPeople.length <= 0) {
+      const fav = localStorage.getItem("favoritesPeople");
+      if (fav) {
+        setFavorites(JSON.parse(fav));
+      }
+    }
+  }, [favoritesPeople]);
 
   const getPeoples = async () => {
     try {
@@ -17,11 +27,27 @@ export const PeopleContextProvider = ({ children }) => {
     }
   };
 
+  const saveFavorites = (people) => {
+    // const index = favoritesPeople.indexOf(people);
+    const index = favoritesPeople.findIndex(
+      (element) => people.name === element.name
+    );
+    const existsFav = index !== -1;
+    if (existsFav) {
+      favoritesPeople.splice(index, 1);
+    } else {
+      favoritesPeople.push(people);
+    }
+    localStorage.setItem("favoritesPeople", JSON.stringify(favoritesPeople));
+  };
+
   const peopleProviderValue = {
     peoples,
     detailPeople,
     getPeoples,
     setDetailPeople,
+    saveFavorites,
+    favoritesPeople,
   };
 
   return (

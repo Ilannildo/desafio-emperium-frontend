@@ -1,25 +1,63 @@
 import React from "react";
 import { useNavigate } from "react-router";
 import { Container, Itens, Title, ButtonDetail } from "./style";
+import FavIconOutline from "../../assets/fav-outline.png";
+import FavIcon from "../../assets/fav.png";
+import { ButtonFav, ContentRight } from "../ListPeople/style";
 
-export const ListStarships = ({ starships, setDetailStarships }) => {
+export const ListStarships = ({
+  starships,
+  setDetailStarships,
+  saveFavoritesStarships,
+  favoritesStarships,
+  enableFavButton = false,
+}) => {
   const navigate = useNavigate();
+
+  const favIconSource = (people) => {
+    console.log("Personagem", people.name);
+    const found = favoritesStarships.findIndex(
+      (element) => people.name === element.name
+    );
+    console.log(`Planeta ${people.name} existe? `, found);
+    if (found !== -1) {
+      return <img src={FavIcon} alt="Favoritar" width="30" height="30" />;
+    } else {
+      return (
+        <img src={FavIconOutline} alt="Favoritar" width="30" height="30" />
+      );
+    }
+  };
+
   return (
     <Container>
       <Itens>
-        { starships && starships.map((item) => (
-          <li key={item.url}>
-            <Title>{item.name}</Title>
-            <ButtonDetail
-              onClick={() => {
-                setDetailStarships(item);
-                navigate("/detail/starships");
-              }}
-            >
-              Ver mais
-            </ButtonDetail>
-          </li>
-        ))}
+        {starships &&
+          starships.map((item) => (
+            <li key={item.url}>
+              <Title>{item.name}</Title>
+              <ContentRight>
+                {enableFavButton && (
+                  <ButtonFav
+                    onClick={() => {
+                      saveFavoritesStarships(item);
+                      navigate("/starships");
+                    }}
+                  >
+                    {favIconSource(item)}
+                  </ButtonFav>
+                )}
+                <ButtonDetail
+                  onClick={() => {
+                    setDetailStarships(item);
+                    navigate("/detail/starships");
+                  }}
+                >
+                  Ver mais
+                </ButtonDetail>
+              </ContentRight>
+            </li>
+          ))}
       </Itens>
     </Container>
   );
