@@ -53,7 +53,7 @@ export const ListStarships = ({
                     navigate("/detail/starships");
                   }}
                 >
-                  Ver mais
+                  Ver detalhes
                 </ButtonDetail>
               </ContentRight>
             </li>

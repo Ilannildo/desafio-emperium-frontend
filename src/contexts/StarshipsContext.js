@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import api from "../services/api"; 
+import api from "../services/api";
 
 export const StarshipsContext = createContext({});
 
@@ -27,14 +27,17 @@ export const StarshipsContextProvider = ({ children }) => {
     } else {
       favoritesStarships.push(starship);
     }
-    localStorage.setItem("favoritesStarships", JSON.stringify(favoritesStarships));
+    localStorage.setItem(
+      "favoritesStarships",
+      JSON.stringify(favoritesStarships)
+    );
   };
 
   const getStarships = async () => {
     try {
-      const swapiResult = await api.get("/starships");
-      const { results } = swapiResult.data;
-      setStarships(results);
+      const swapiResult = await api.get("/starship");
+      const { result } = swapiResult.data;
+      setStarships(result);
     } catch (error) {
       console.log("Opa! algo deu errado.");
     }
@@ -46,7 +49,7 @@ export const StarshipsContextProvider = ({ children }) => {
     getStarships,
     setDetailStarships,
     saveFavoritesStarships,
-    favoritesStarships
+    favoritesStarships,
   };
 
   return (

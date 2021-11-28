@@ -32,7 +32,7 @@ export const Planets = () => {
       <Title>
         <header>VAMOS SABER MAIS SOBRE OS PLANETAS DE STAR WARS</header>
       </Title>
-      <Search label="planetas" onSearch={searchPlanet} />
+      <Search label={` planeta`} onSearch={searchPlanet} />
       {planets ? (
         <ListPlanet
           planet={search ? search : planets}

@@ -32,7 +32,7 @@ export const Starships = () => {
       <Title>
         <header>VAMOS SABER MAIS SOBRE AS ESPAÇO-NAVES</header>
       </Title>
-      <Search label="naves espaciais" onSearch={searchStarships} />
+      <Search label={`a nave espacial`} onSearch={searchStarships} />
       {starships ? (
         <ListStarships
           starships={search ? search : starships}

@@ -20,8 +20,9 @@ export const PeopleContextProvider = ({ children }) => {
   const getPeoples = async () => {
     try {
       const swapiResult = await api.get("/people");
-      const { results } = swapiResult.data;
-      setPeoples(results);
+      const { result } = swapiResult.data;
+      console.log("Result", result);
+      setPeoples(result);
     } catch (error) {
       console.log("Opa! algo deu errado.");
     }

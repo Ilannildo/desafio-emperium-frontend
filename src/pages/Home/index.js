@@ -33,7 +33,7 @@ export const Home = () => {
           VOCÊ
         </header>
       </Title>
-      <Search label="nome" onSearch={searchPeople} />
+      <Search label={` personagem`} onSearch={searchPeople} />
       {peoples ? (
         <ListPeople
           peoples={search ? search : peoples}

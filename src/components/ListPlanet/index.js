@@ -54,7 +54,7 @@ export const ListPlanet = ({
                     navigate("/detail/planet");
                   }}
                 >
-                  Ver mais
+                  Ver detalhes
                 </ButtonDetail>
               </ContentRight>
             </li>

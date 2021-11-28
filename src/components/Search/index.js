@@ -6,7 +6,7 @@ export const Search = ({ label, onSearch }) => {
     <SearchContainer>
       <input
         type="text"
-        placeholder={`Digite um ${label} para filtrar...`}
+        placeholder={`Digite o nome de um${label} para filtrar...`}
         onChange={(e) => onSearch(e.target.value)}
       />
     </SearchContainer>

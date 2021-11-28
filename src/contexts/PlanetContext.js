@@ -32,9 +32,9 @@ export const PlanetContextProvider = ({ children }) => {
 
   const getPlanets = async () => {
     try {
-      const swapiResult = await api.get("/planets");
-      const { results } = swapiResult.data;
-      setPlanets(results);
+      const swapiResult = await api.get("/planet");
+      const { result } = swapiResult.data;
+      setPlanets(result);
     } catch (error) {
       console.log("Opa! algo deu errado.");
     }

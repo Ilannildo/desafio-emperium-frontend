@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { ListPeople } from "../../components/ListPeople";
 import { ListPlanet } from "../../components/ListPlanet";
+import { ListStarships } from "../../components/ListStarships";
 import { Navbar } from "../../components/Navbar";
 import { PeopleContext } from "../../contexts/PeopleContext";
 import { PlanetContext } from "../../contexts/PlanetContext";
@@ -10,7 +11,7 @@ import { FavoritePeopleContainer, Title } from "./style";
 export const Favorites = () => {
   const { favoritesPeople, setDetailPeople } = useContext(PeopleContext);
   const { favoritesPlanets, setDetailPlanet } = useContext(PlanetContext);
-  const { favoritesStarships, setDetailStarship } = useContext(StarshipsContext);
+  const { favoritesStarships, setDetailStarships } = useContext(StarshipsContext);
 
   return (
     <>
@@ -43,9 +44,9 @@ export const Favorites = () => {
           <header>Naves espaciais favoritas</header>
         </Title>
         {favoritesStarships ? (
-          <ListPlanet
-            planet={favoritesStarships}
-            setDetailPlanet={setDetailStarship}
+          <ListStarships
+            starships={favoritesStarships}
+            setDetailStarships={setDetailStarships}
           />
         ) : null}
       </FavoritePeopleContainer>
