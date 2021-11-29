@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useCallback } from "react";
 import api from "../services/api";
 
 export const PeopleContext = createContext({});
@@ -9,27 +9,23 @@ export const PeopleContextProvider = ({ children }) => {
   const [favoritesPeople, setFavorites] = useState([]);
 
   useEffect(() => {
-    if (favoritesPeople.length <= 0) {
-      const fav = localStorage.getItem("favoritesPeople");
-      if (fav) {
-        setFavorites(JSON.parse(fav));
-      }
+    const fav = localStorage.getItem("favoritesPeople");
+    if (fav) {
+      setFavorites(JSON.parse(fav));
     }
-  }, [favoritesPeople]);
+  }, []);
 
-  const getPeoples = async () => {
+  const getPeoples = useCallback(async () => {
     try {
       const swapiResult = await api.get("/people");
       const { result } = swapiResult.data;
-      console.log("Result", result);
       setPeoples(result);
     } catch (error) {
       console.log("Opa! algo deu errado.");
     }
-  };
+  }, []);
 
   const saveFavorites = (people) => {
-    // const index = favoritesPeople.indexOf(people);
     const index = favoritesPeople.findIndex(
       (element) => people.name === element.name
     );

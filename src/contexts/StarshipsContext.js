@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useCallback, useEffect, useState } from "react";
 import api from "../services/api";
 
 export const StarshipsContext = createContext({});
@@ -9,13 +9,11 @@ export const StarshipsContextProvider = ({ children }) => {
   const [favoritesStarships, setFavoritesStarships] = useState([]);
 
   useEffect(() => {
-    if (favoritesStarships.length <= 0) {
-      const fav = localStorage.getItem("favoritesStarships");
-      if (fav) {
-        setFavoritesStarships(JSON.parse(fav));
-      }
+    const fav = localStorage.getItem("favoritesStarships");
+    if (fav) {
+      setFavoritesStarships(JSON.parse(fav));
     }
-  }, [favoritesStarships]);
+  }, []);
 
   const saveFavoritesStarships = (starship) => {
     const index = favoritesStarships.findIndex(
@@ -33,7 +31,7 @@ export const StarshipsContextProvider = ({ children }) => {
     );
   };
 
-  const getStarships = async () => {
+  const getStarships = useCallback(async () => {
     try {
       const swapiResult = await api.get("/starship");
       const { result } = swapiResult.data;
@@ -41,7 +39,7 @@ export const StarshipsContextProvider = ({ children }) => {
     } catch (error) {
       console.log("Opa! algo deu errado.");
     }
-  };
+  },[]);
 
   const StarshipsProviderValue = {
     starships,

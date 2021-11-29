@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Title } from "../../App.style";
+import { WrapperTitle } from "../../App.style";
 import { ListPlanet } from "../../components/ListPlanet";
 import { Navbar } from "../../components/Navbar";
 import { Search } from "../../components/Search";
@@ -16,8 +16,8 @@ export const Planets = () => {
   const [search, setSearch] = useState(null);
 
   useEffect(() => {
-    if (!planets) getPlanets();
-  });
+    getPlanets();
+  }, []);
 
   const searchPlanet = (term) => {
     const result = planets.filter((item) =>
@@ -29,9 +29,9 @@ export const Planets = () => {
   return (
     <>
       <Navbar />
-      <Title>
+      <WrapperTitle>
         <header>VAMOS SABER MAIS SOBRE OS PLANETAS DE STAR WARS</header>
-      </Title>
+      </WrapperTitle>
       <Search label={` planeta`} onSearch={searchPlanet} />
       {planets ? (
         <ListPlanet

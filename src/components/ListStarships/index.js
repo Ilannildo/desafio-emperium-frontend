@@ -1,9 +1,15 @@
 import React from "react";
 import { useNavigate } from "react-router";
-import { Container, Itens, Title, ButtonDetail } from "./style";
 import FavIconOutline from "../../assets/fav-outline.png";
 import FavIcon from "../../assets/fav.png";
-import { ButtonFav, ContentRight } from "../ListPeople/style";
+import {
+  Container,
+  Itens,
+  Title,
+  ButtonDetail,
+  ButtonFav,
+  ContentRight,
+} from "../../App.style";
 
 export const ListStarships = ({
   starships,
@@ -15,11 +21,9 @@ export const ListStarships = ({
   const navigate = useNavigate();
 
   const favIconSource = (people) => {
-    console.log("Personagem", people.name);
     const found = favoritesStarships.findIndex(
       (element) => people.name === element.name
     );
-    console.log(`Planeta ${people.name} existe? `, found);
     if (found !== -1) {
       return <img src={FavIcon} alt="Favoritar" width="30" height="30" />;
     } else {

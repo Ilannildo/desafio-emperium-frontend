@@ -6,7 +6,7 @@ export const SearchContainer = styled.div`
   margin: 0 auto;
   min-height: 12hv;
   width: 100%;
-  max-width: 700px;
+  max-width: 800px;
   min-height: 12px;
   position: relative;
   flex-direction: column;

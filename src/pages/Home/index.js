@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Title } from "../../App.style";
+import { WrapperTitle } from "../../App.style";
 import { ListPeople } from "../../components/ListPeople";
 import { Navbar } from "../../components/Navbar";
 import { Search } from "../../components/Search";
@@ -11,11 +11,8 @@ export const Home = () => {
   const [search, setSearch] = useState(null);
 
   useEffect(() => {
-    if (!peoples) {
-      getPeoples(); 
-    }
-    console.log('Personagens favoritos =>',favoritesPeople);
-  }, [peoples, getPeoples, favoritesPeople]);
+    getPeoples(); 
+  }, []);
 
   const searchPeople = (term) => {
     const result = peoples.filter((item) =>
@@ -27,12 +24,12 @@ export const Home = () => {
   return (
     <>
       <Navbar />
-      <Title>
+      <WrapperTitle>
         <header>
           Vamos conhecer mais sobre os personagens <br /> QUE A FORÇA ESTEJA COM
           VOCÊ
         </header>
-      </Title>
+      </WrapperTitle>
       <Search label={` personagem`} onSearch={searchPeople} />
       {peoples ? (
         <ListPeople

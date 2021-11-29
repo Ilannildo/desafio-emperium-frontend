@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState, useCallback } from "react";
 import api from "../services/api";
 
 export const PlanetContext = createContext({});
@@ -9,13 +9,15 @@ export const PlanetContextProvider = ({ children }) => {
   const [favoritesPlanets, setFavoritesPlanets] = useState([]);
 
   useEffect(() => {
-    if (favoritesPlanets.length <= 0) {
-      const fav = localStorage.getItem("favoritesPlanets");
-      if (fav) {
-        setFavoritesPlanets(JSON.parse(fav));
-      }
+    getFavPeoples()
+  }, []);
+
+  const getFavPeoples = () => {
+    const fav = localStorage.getItem("favoritesPlanets");
+    if (fav) {
+      setFavoritesPlanets(JSON.parse(fav));
     }
-  }, [favoritesPlanets]);
+  };
 
   const saveFavoritesPlanets = (planet) => {
     const index = favoritesPlanets.findIndex(
@@ -30,7 +32,7 @@ export const PlanetContextProvider = ({ children }) => {
     localStorage.setItem("favoritesPlanets", JSON.stringify(favoritesPlanets));
   };
 
-  const getPlanets = async () => {
+  const getPlanets = useCallback(async () => {
     try {
       const swapiResult = await api.get("/planet");
       const { result } = swapiResult.data;
@@ -38,7 +40,7 @@ export const PlanetContextProvider = ({ children }) => {
     } catch (error) {
       console.log("Opa! algo deu errado.");
     }
-  };
+  },[]);
 
   const PlanetProviderValue = {
     planets,

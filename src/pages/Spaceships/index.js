@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Title } from "../../App.style";
+import { WrapperTitle } from "../../App.style";
 import { ListStarships } from "../../components/ListStarships";
 import { Navbar } from "../../components/Navbar";
 import { Search } from "../../components/Search";
@@ -16,8 +16,8 @@ export const Starships = () => {
   const [search, setSearch] = useState(null);
 
   useEffect(() => {
-    if (!starships) getStarships();
-  });
+    getStarships();
+  }, []);
 
   const searchStarships = (term) => {
     const result = starships.filter((item) =>
@@ -29,9 +29,9 @@ export const Starships = () => {
   return (
     <>
       <Navbar />
-      <Title>
+      <WrapperTitle>
         <header>VAMOS SABER MAIS SOBRE AS ESPAÇO-NAVES</header>
-      </Title>
+      </WrapperTitle>
       <Search label={`a nave espacial`} onSearch={searchStarships} />
       {starships ? (
         <ListStarships

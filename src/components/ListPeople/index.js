@@ -7,7 +7,7 @@ import {
   ButtonDetail,
   ContentRight,
   ButtonFav,
-} from "./style";
+} from "../../App.style";
 
 import FavIconOutline from "../../assets/fav-outline.png";
 import FavIcon from "../../assets/fav.png";
@@ -22,11 +22,9 @@ export const ListPeople = ({
   const navigate = useNavigate();
 
   const favIconSource = (people) => {
-    console.log("Personagem", people.name);
     const found = favoritesPeople.findIndex(
       (element) => people.name === element.name
     );
-    console.log(`Pessoa ${people.name} existe? `, found);
     if (found !== -1) {
       return <img src={FavIcon} alt="Favoritar" width="30" height="30" />;
     } else {
@@ -37,7 +35,7 @@ export const ListPeople = ({
   };
 
   return (
-    <Container>
+    <Container> 
       <Itens>
         {peoples &&
           peoples.map((item) => (
